@@ -47,7 +47,6 @@ jobs:
     - name: Get Terraform Outputs
       id: terraform_outputs # <-- Dê um ID a este passo
       run: |
-        cd infra
         # Pega o valor do output 'rds_endpoint' do Terraform e o define como um output do passo
         endpoint=$(terraform output -raw rds_endpoint)
         echo "rds_endpoint=${endpoint}" >> $GITHUB_OUTPUT
