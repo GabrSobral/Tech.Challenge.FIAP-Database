@@ -18,23 +18,6 @@ resource "aws_db_subnet_group" "db_subnet_group" {
   }
 }
 
-resource "aws_security_group" "db_sg" {
-  name        = "db-security-group"
-  description = "Permite acesso ao RDS"
-  
-  # AQUI TAMBÉM: O SG precisa saber em qual VPC ele vai ser criado
-  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
-
-  ingress {
-    description     = "PostgreSQL from K8s"
-    from_port       = 5432
-    to_port         = 5432
-    protocol        = "tcp"
-    # Permite tráfego vindo do SG do cluster (também lido do remote state)
-    security_groups = [data.terraform_remote_state.vpc.outputs.security_group_id]
-  }
-}
-
 resource "aws_db_instance" "postgres_db" {
   # Identificador único para a instância RDS
   identifier = "tech-challenge-db"
