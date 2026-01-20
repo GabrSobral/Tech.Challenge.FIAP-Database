@@ -22,3 +22,19 @@ data "aws_iam_user" "principal_user" {
 
 # --- REMOVIDO: data "aws_eks_cluster_auth" ---
 # O banco não precisa se autenticar no Kubernetes.
+
+# 1. Encontrar o Security Group dos Nodes do EKS
+# Como o cluster está em outro repo, buscamos o SG pelas tags padrão da AWS
+data "aws_security_groups" "eks_nodes" {
+  filter {
+    name   = "tag:kubernetes.io/cluster/tech-challenge-eks-cluster" # Confirme se esse é o nome do seu cluster
+    values = ["owned"]
+  }
+  
+  # Filtro extra para garantir que pegamos o SG dos nodes, não do Control Plane
+  # Geralmente os nodes têm a tag 'aws:eks:cluster-name'
+  filter {
+     name   = "tag:aws:eks:cluster-name"
+     values = ["tech-challenge-eks-cluster"]
+  }
+}
