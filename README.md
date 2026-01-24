@@ -15,6 +15,12 @@ Este repositório contém o código Terraform responsável pelo provisionamento 
 
 ---
 
+## Outros repositórios
+
+- [Infraestrutura](https://github.com/GabrSobral/Tech.Challenge.FIAP-K8S)
+- [API](https://github.com/GabrSobral/Tech.Challenge.FIAP)
+- [Lambda Function](https://github.com/GabrSobral/Tech.Challenge.FIAP---Lambda-Functions)
+
 ## 🎯 Objetivo
 
 O objetivo deste projeto é isolar a camada de dados, garantindo que o estado da aplicação seja persistido de forma independente do ciclo de vida dos containers. A infraestrutura provisiona:
