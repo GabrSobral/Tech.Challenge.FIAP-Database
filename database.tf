@@ -37,6 +37,6 @@ resource "aws_db_instance" "postgres_db" {
   db_subnet_group_name   = aws_db_subnet_group.db_subnet_group.name
 
   # Configurações Adicionais
-  publicly_accessible = false # Importante para segurança! O banco não deve ser acessível da internet.
+  publicly_accessible = true # Importante para segurança! O banco não deve ser acessível da internet.
   skip_final_snapshot = true  # Em produção, use 'false' para criar um snapshot final ao apagar.
 }

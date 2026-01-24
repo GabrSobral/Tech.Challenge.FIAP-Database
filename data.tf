@@ -11,6 +11,16 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
+data "terraform_remote_state" "lambda" {
+  backend = "s3"
+
+  config = {
+    bucket = "tech-challenge-fiap-s3-bucket"
+    key    = "auth-lambda/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
 # Se você não usa o "principal_user" dentro do database.tf (para tags, por exemplo),
 # você também pode remover este bloco abaixo. Se usa, mantenha.
 data "aws_iam_user" "principal_user" {
